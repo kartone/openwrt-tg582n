@@ -231,6 +231,9 @@ brcm63xx_dt_detect() {
 	"TP-Link TD-W8900GB")
 		board_name="td-w8900gb"
 		;;
+	"THOMSON TG582N")
+		board_name="tg582n"
+		;;
 	"USRobotics 9108")
 		board_name="usr9108"
 		;;

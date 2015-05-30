@@ -414,6 +414,8 @@ $(eval $(call ImageDTB,CFEDTB,CPVA642,CPA-ZNTE60T,cpva642,CPVA642,6358,--signatu
 $(eval $(call ImageDTB,Dummy,MAGIC,MAGIC,magic,MAGIC,6348))
 # TP-Link TD-W8900GB
 $(eval $(call ImageDTB,CFEDTB,TDW8900GB,TD-W8900GB,td-w8900gb,96348GW-11,6348,--rsa-signature "$(shell printf 'PRID\x89\x10\x00\x02')" --image-offset 0x20000))
+# Thomsom TG582n
+$(eval $(call ImageDTB,CFEDTB,TG582N,TG582N,tg582n,963281T_TEF,6328,--pad 8))
 # USRobotics 9108
 $(eval $(call ImageDTB,CFEDTB,USR9108,USR9108,usr9108,96348GW-A,6348))
 # ZyXEL P870HW-51a v2

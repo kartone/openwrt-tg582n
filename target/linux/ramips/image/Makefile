@@ -514,6 +514,7 @@ define BuildFirmware/DCS930/squashfs
 endef
 BuildFirmware/DCS930/initramfs=$(call BuildFirmware/OF/initramfs,$(1),$(2),$(3))
 Image/Build/Profile/DCS930=$(call BuildFirmware/DCS930/$(1),$(1),dcs-930,DCS-930)
+Image/Build/Profile/DCS930LB1=$(call BuildFirmware/DCS930/$(1),$(1),dcs-930l-b1,DCS-930L-B1)
 
 Image/Build/Profile/ESR-9753=$(call BuildFirmware/Default4M/$(1),$(1),esr-9753,ESR-9753)
 
@@ -717,6 +718,7 @@ define Image/Build/Profile/Default
 	$(call Image/Build/Profile/DAP1350,$(1))
 	$(call Image/Build/Profile/DAP1350WW,$(1))
 	$(call Image/Build/Profile/DCS930,$(1))
+	$(call Image/Build/Profile/DCS930LB1,$(1))
 	$(call Image/Build/Profile/ESR-9753,$(1))
 	$(call Image/Build/Profile/F7C027,$(1))
 	$(call Image/Build/Profile/F5D8235V2,$(1))
@@ -857,7 +859,7 @@ whr_300hp2_mtd_size=7012352
 Image/Build/Profile/WHR300HP2=$(call BuildFirmware/CustomFlash/$(1),$(1),whr-300hp2,WHR-300HP2,$(whr_300hp2_mtd_size))
 Image/Build/Profile/WHR600D=$(call BuildFirmware/CustomFlash/$(1),$(1),whr-600d,WHR-600D,$(whr_300hp2_mtd_size))
 whr_1166d_mtd_size=15400960
-Image/Build/Profile/WHR1166D=$(call BuildFirmware/CustomFlash/$(1),$(1),whr-1166d,WHR-1166D,$(whr_1166hd_mtd_size))
+Image/Build/Profile/WHR1166D=$(call BuildFirmware/CustomFlash/$(1),$(1),whr-1166d,WHR-1166D,$(whr_1166d_mtd_size))
 dlink810l_mtd_size=6881280
 Image/Build/Profile/CF-WR800N=$(call BuildFirmware/Default8M/$(1),$(1),cf-wr800n,CF-WR800N)
 Image/Build/Profile/DIR-810L=$(call BuildFirmware/CustomFlash/$(1),$(1),dir-810l,DIR-810L,$(dlink810l_mtd_size))
@@ -919,7 +921,7 @@ endif
 #
 
 ifeq ($(SUBTARGET),mt7621)
-  TARGET_DEVICES += mt7621 wsr-600 wsr-1166 dir-860l-b1 firewrt
+  TARGET_DEVICES += mt7621 wsr-600 wsr-1166 dir-860l-b1 firewrt pbr-m1 re6500
 endif
 
 define Device/mt7621
@@ -929,6 +931,10 @@ endef
 
 define Device/wsr-600
   DTS := WSR-600
+endef
+
+define Device/re6500
+  DTS := RE6500
 endef
 
 define Device/wsr-1166
@@ -953,6 +959,11 @@ endef
 
 define Device/firewrt
   DTS := FIREWRT
+  IMAGE_SIZE := $(ralink_default_fw_size_16M)
+endef
+
+define Device/pbr-m1
+  DTS := PBR-M1
   IMAGE_SIZE := $(ralink_default_fw_size_16M)
 endef
 
